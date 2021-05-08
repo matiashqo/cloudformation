@@ -1,0 +1,21 @@
+Description: planilla para crear usuario y politica
+Resources:
+  DeveloperUser:
+      Type: 'AWS::IAM::User'
+      Properties:
+        UserName: usuario1
+  rPolitica:
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: Acceso-bucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - 's3:*'
+            Resource: 
+              - 'arn:aws:s3:::athena-results-545355652833'
+              - 'arn:aws:s3:::athena-results-545355652833/*'
+      Users:
+        - usuario1
